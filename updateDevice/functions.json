@@ -1,0 +1,22 @@
+{
+    "bindings": [
+        {
+            "type": "cosmosDBTrigger",
+            "name": "input",
+            "direction": "in",
+            "leaseCollectionName": "leases",
+            "connectionStringSetting": "updateDevice_ConnectionString",
+            "databaseName": "beacon-records",
+            "collectionName": "history",
+            "createLeaseCollectionIfNotExists": true
+        },
+        {
+            "name": "outputDocument",
+            "databaseName": "beacon-records",
+            "collectionName": "newest",
+            "connectionStringSetting": "updateDevice_ConnectionString",
+            "direction": "out",
+            "type": "cosmosDB"
+        }
+    ]
+}
