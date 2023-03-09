@@ -5,7 +5,7 @@ module.exports = function (context: Context, input: any) {
     const updateData = input.map((doc: any)=>{
         return {
             id: doc.deviceID,
-            scanendTime: doc.scanendTime,
+            scanendTime: doc.scannedTime,
             originID: doc.originID
         }
     });
