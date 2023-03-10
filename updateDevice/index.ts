@@ -5,10 +5,14 @@ module.exports = function (context: Context, input: any) {
     const updateData = input.map((doc: any)=>{
         return {
             id: doc.deviceID,
-            scanendTime: doc.scannedTime,
+            scannedTime: doc.scannedTime,
             originID: doc.originID
         }
     });
     context.bindings.outputDocument = JSON.stringify(updateData);
+    context.bindings.signalRMessages = [{
+        "target": "beaconUpdate",
+        "arguments": [updateData]
+    }]
     context.done();
 };
