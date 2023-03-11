@@ -6,7 +6,7 @@ module.exports = function (context: Context, input: any) {
         return {
             id: doc.deviceID,
             scannedTime: doc.scannedTime,
-            originID: doc.originID
+            roomID: doc.roomID
         }
     });
     context.bindings.outputDocument = JSON.stringify(updateData);
