@@ -17,6 +17,13 @@
             "connectionStringSetting": "updateDevice_ConnectionString",
             "direction": "out",
             "type": "cosmosDB"
+        },
+        {
+            "type": "signalR",
+            "name": "signalRMessages",
+            "connectionString": "AzureSignalRConnectionString",
+            "hubName": "beaconStatus",
+            "direction": "out"
         }
     ]
 }

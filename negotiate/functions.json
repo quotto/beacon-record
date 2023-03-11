@@ -1,0 +1,11 @@
+{
+    "bindings": [
+        {
+            "type": "signalRConnectionInfo",
+            "name": "connectionInfo",
+            "hubName": "beaconStatus",
+            "direction": "in",
+            "connectionStringSetting": "AzureSignalRConnectionString"
+        }
+    ]
+}
