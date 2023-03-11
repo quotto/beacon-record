@@ -4,6 +4,7 @@ module.exports = function (context: Context, input: any) {
     const updateData = input.map((doc: any)=>{
         return {
             id: doc.deviceID,
+            deviceID: doc.deviceID,
             scannedTime: doc.scannedTime,
             roomID: doc.roomID
         }
