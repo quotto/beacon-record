@@ -4,8 +4,8 @@
 name: Build and deploy Node.js project to Azure Function App - history-trigger
 
 on:
-  push:
-  workflow_dispatch:
+  - push
+  - workflow_dispatch
 
 env:
   AZURE_FUNCTIONAPP_PACKAGE_PATH: '.' # set this to the path to your web app project, defaults to the repository root
@@ -40,7 +40,7 @@ jobs:
           slot-name: 'staging'
           package: ${{ env.AZURE_FUNCTIONAPP_PACKAGE_PATH }}
           publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_C65985B6669E429D8B5C4704CB50859F }}
- swap-slot:
+  swap-slot:
     runs-on: ubuntu-22.04
     needs:
       - prebuild
