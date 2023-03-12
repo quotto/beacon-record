@@ -42,9 +42,6 @@ jobs:
           publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_C65985B6669E429D8B5C4704CB50859F }}
   swap-slot:
     runs-on: ubuntu-22.04
-    needs:
-      - prebuild
-    environment: production
     if: ${{ github.ref == 'refs/heads/main' && github.event_name == 'pull_request' && github.event.action == 'closed' }}
     steps:
     - name: Login to Azure
