@@ -5,8 +5,6 @@ name: Build and deploy Node.js project to Azure Function App - history-trigger
 
 on:
   push:
-    branches:
-      - main
   workflow_dispatch:
 
 env:
@@ -15,6 +13,7 @@ env:
 
 jobs:
   build-and-deploy:
+    if: ${{!startsWith(github.ref, 'refs/heads/main')}}
     runs-on: windows-latest
     steps:
       - name: 'Checkout GitHub Action'
@@ -38,6 +37,24 @@ jobs:
         id: fa
         with:
           app-name: 'history-trigger'
-          slot-name: 'Production'
+          slot-name: 'staging'
           package: ${{ env.AZURE_FUNCTIONAPP_PACKAGE_PATH }}
           publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_C65985B6669E429D8B5C4704CB50859F }}
+ swap-slot:
+    runs-on: ubuntu-22.04
+    needs:
+      - prebuild
+    environment: production
+    if: ${{ github.ref == 'refs/heads/main' && github.event_name == 'pull_request' && github.event.action == 'closed' }}
+    steps:
+    - name: Login to Azure
+      uses: azure/login@v1.4.6
+      continue-on-error: false
+      with:
+        creds: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_C65985B6669E429D8B5C4704CB50859F }}
+    - name: Swap deploy slot
+      uses: azure/CLI@v1
+      with:
+        azcliversion: 2.30.0
+        inlineScript: |
+          az functionapp deployment slot swap --slot stage --name history-trigger --resource-group quotto-demo-rg

@@ -5,7 +5,7 @@
             "name": "input",
             "direction": "in",
             "leaseCollectionName": "leases",
-            "connectionStringSetting": "updateDevice_ConnectionString",
+            "connectionStringSetting": "BeaconDatabaseConnectionString",
             "databaseName": "beacon-records",
             "collectionName": "history",
             "createLeaseCollectionIfNotExists": true
@@ -14,7 +14,7 @@
             "name": "outputDocument",
             "databaseName": "beacon-records",
             "collectionName": "newest",
-            "connectionStringSetting": "updateDevice_ConnectionString",
+            "connectionStringSetting": "BeaconDatabaseConnectionString",
             "direction": "out",
             "type": "cosmosDB"
         },
